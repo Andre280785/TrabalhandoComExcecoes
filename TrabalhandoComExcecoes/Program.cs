@@ -29,18 +29,14 @@ namespace TrabalhandoComExcecoes
                 Console.Write("Check-out date (dd/MM/yyyy): ");
                 checkOut = DateTime.Parse(Console.ReadLine());
 
-                DateTime now = DateTime.Now;
-                if (checkIN < now || checkOut < now)
+                string error = reservation.UpdateDates(checkIN, checkOut);
+
+                if (error != null)
                 {
-                    Console.WriteLine("Error in reservation: Reservation dates for update must be dates");
-                }
-                else if (checkOut <= checkIN)
-                {
-                    Console.WriteLine("Error in reservation: Check-out date must be after check-in date");
+                    Console.WriteLine("Error in reservation: " + error);
                 }
                 else
                 {
-                    reservation.UpdateDates(checkIN, checkOut);
                     Console.WriteLine(reservation);
                 }
             }
